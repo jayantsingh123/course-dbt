@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+
+  - name: postgres # name of the source (this can be named whatever you want, but should be descriptive.
+    schema: public # this is the schema our raw data lives in
+    database: raw # this is the name of our database
+
+    tables:
+      - name: addresses 
+        description: >
+          Contains address information
+      - name: events
+        description: >
+          Contains event information 
+      - name: orders
+        description: >
+          Contains order information 
+      - name: order_items
+        description: >
+          Contains order item information
+      - name: products
+        description: >
+          Contains product information
+      - name: promos
+        description: >
+          Contains promo information
+      - name: users
+        description: >
+          Contains user information 
