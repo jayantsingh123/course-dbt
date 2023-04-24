@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: fact_page_views
+    description: "Fact table to store information regarding product performance, such as number of daily page views,
+     count of orders placed for a given product."
+    tests:
+      - unique:
+          column_name: "created_at || '-' || product_name"
+

@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: "Dimension model to store product information"
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_users
+    description: "Information regarding users"
+    columns: 
+      - name: user_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_order_details
+    description: "Information regarding Orders"
+    columns: 
+      - name: order_id
+        tests:
+          - not_null
+      - name: delivery_period
+        tests: 
+          - assert_positive_value
+
+
+
+
+ 
