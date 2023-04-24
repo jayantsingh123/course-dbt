@@ -37,7 +37,7 @@ Another factor can be inclination of users to use discounts and promotions. User
 
 Question 3. Create marts folder with suitable models.
 
-Response: For product mart, we have created the fact table, fact_page_views.sql. It can help to answer following questions; how to the products compare in page views on a daily basis, as well as how do the products compare in terms of orders placed on daily basis.
+Response: For product mart, we have created the fact table, fact_page_views.sql. It can help to answer following questions; how do the products compare in page views on a daily basis, as well as how do the products compare in terms of orders placed on daily basis.
 
 
      sql:     with page_view as (
@@ -87,7 +87,7 @@ Part 2: Tests
 
 Question 1. Assumpations and tests regarding the models.
 
-Response: We have tried to focus on some singular tests which  may help in assessing th correctness of the data. To this end we have implmented following singular tests:
+Response: We have tried to focus on some singular tests which  may help in assessing the correctness of the data. To this end we have implmented following singular tests:
 
   (a.) Order created date should be before order delivery date.
 
@@ -106,7 +106,7 @@ With the above tests implemented, we didn't find any data issues in the datasets
 
 Question 2: How do we plan to alert stakeholders of bad data quality?
 
-Response: We can use slack notifications to update the stakeholders if any required test is failing. Some sort of aitomation, e.g. airlfow can be used as an orchestration toolt to run these tests regularly.
+Response: We can use slack notifications to update the stakeholders if any required test is failing. Some sort of automation, e.g. airflow can be used as an orchestration tool to run these tests regularly.
 
 
 Part 3. dbt snapshots
