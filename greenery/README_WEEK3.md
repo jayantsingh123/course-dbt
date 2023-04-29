@@ -2,6 +2,7 @@
   - What is our overall conversion rate (defined as ratio of number of sessions with checkout to
        overall count of sessions)?
   Response: 
+
      select count(distinct session_id) as session_cnt,
        count(distinct case when event_type='checkout' then session_id end) as checkout_session_cnt,
        round((checkout_session_cnt / session_cnt)*100, 2) as conversion_rate 
@@ -11,6 +12,7 @@
   - What is our conversion rate by product (defined as the # of unique sessions with a purchase event of that product divided by total number of unique sessions that viewed that product)?
 
   Response: 
+
      select product_name,
             round(div0(purchase_session_cnt, page_view_cnt) * 100, 2) as conversion_rate
      from fact_product_conversion_rate
