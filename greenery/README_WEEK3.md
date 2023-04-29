@@ -3,10 +3,11 @@
        overall count of sessions)?
   Response: 
 
-     select count(distinct session_id) as session_cnt,
-       count(distinct case when event_type='checkout' then session_id end) as checkout_session_cnt,
-       round((checkout_session_cnt / session_cnt)*100, 2) as conversion_rate 
-      from stg_events;
+      select count(distinct session_id) as session_cnt,
+         count(distinct case when event_type='checkout' then session_id end) as checkout_session_cnt,
+         round((checkout_session_cnt / session_cnt)*100, 2) as conversion_rate 
+       from stg_events;
+
     The overall conversion rate is 63 prcent, i.e. out of 100 sessions 63 og them resulted in order placed.
 
   - What is our conversion rate by product (defined as the # of unique sessions with a purchase event of that product divided by total number of unique sessions that viewed that product)?
@@ -26,12 +27,12 @@
    In addition, a jinja has been defined in the model `fact_product_conversion_rate`, aimed at calculating count of sessions for a given product.
 
 3. In order to grant permissions to reporting role, we have done following changes in `dbt_project.yml` file.
-     models:
-      greenery:
-        # Config indicated by + and applies to all models. Here grabt is a macro defined
+
+      models:
+       greenery:
    
-       +post-hook:
-           - "{{ grant(role='reporting') }}" 
+         +post-hook:
+            - "{{ grant(role='reporting') }}" 
 
 
 4. dbt-utils package has been installed. And the test `dbt_utils.unique_combination_of_columns` has been used to check uniqueness of combination of columns in the model `fact_page_views.sql`.
