@@ -5,6 +5,16 @@ models:
     description: "Fact table to store information regarding product performance, such as number of daily page views,
      count of orders placed for a given product."
     tests:
+    - dbt_utils.unique_combination_of_columns:
+        combination_of_columns:
+          - created_at
+          - product_name
+
+  - name: fact_product_conversion_rate
+    description: "For a givrn product, we get count of sessions, where the product was viewed, second product was
+     added to cart. Next we also count sessions when product was checked out. "
+    tests:
       - unique:
-          column_name: "created_at || '-' || product_name"
+          column_name: "product_name"
+
 

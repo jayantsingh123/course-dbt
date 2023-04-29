@@ -19,8 +19,8 @@ models:
           - unique
           - not_null
 
-  - name: fact_order_details
-    description: "Information regarding Orders"
+  - name: int_order_details
+    description: "Information regarding Orders in Intermediate model"
     columns: 
       - name: order_id
         tests:
@@ -28,6 +28,14 @@ models:
       - name: delivery_period
         tests: 
           - assert_positive_value
+  - name: dim_session_event_type_cnt
+    description: "For a given sesson id, get the count of different event types"
+    columns:
+      - name: session_id
+      - name: checkout_cnt
+      - name: page_view_cnt
+      - name: package_shipped_cnt
+      - name: add_to_cart_cnt 
 
 
 

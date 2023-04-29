@@ -25,7 +25,7 @@ select events.event_id,
 
 
 from {{ ref('stg_events') }} as events
-left join {{ ref('fact_order_details') }} as orders
+left join {{ ref('int_order_details') }} as orders
 on events.order_id = orders.order_id
 where event_type = 'checkout'
 ),

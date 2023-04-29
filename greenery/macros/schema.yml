@@ -1,0 +1,14 @@
+version: 2
+
+macros:
+  - name: event_type_cnt
+    description: A macro to get count of different event types for a session_id
+tests:
+  - name: assert_positive_value
+    description: Test defined to check for positive values
+    arguments:
+      - name: column_name
+        description: The name of the column we want to check for negative values
+      - name: model
+        description: Name of the model.
+    
