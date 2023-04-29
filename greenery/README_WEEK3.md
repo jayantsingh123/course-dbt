@@ -17,7 +17,7 @@
             round(div0(purchase_session_cnt, page_view_cnt) * 100, 2) as conversion_rate
      from fact_product_conversion_rate
 
-    We have created a model, called `fact_product_conversion_rate` which has information regarding count of sessions for a given event type corresponding to a given product.
+   We have created a model, called `fact_product_conversion_rate` which has information regarding count of sessions for a given event type corresponding to a given product.
 
 2. Use macros to simplify the code logic if possible.
 
