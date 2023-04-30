@@ -1,6 +1,7 @@
 1. Create new models to answer the first two questions.
   - What is our overall conversion rate (defined as ratio of number of sessions with checkout to
        overall count of sessions)?
+
   Response: 
 
       select count(distinct session_id) as session_cnt,
@@ -8,7 +9,7 @@
          round((checkout_session_cnt / session_cnt)*100, 2) as conversion_rate 
        from stg_events;
 
-    The overall conversion rate is 63 prcent, i.e. out of 100 sessions 63 og them resulted in order placed.
+    The overall conversion rate is 63 percent, i.e. out of 100 unique sessions 63 of them resulted in order placed.
 
   - What is our conversion rate by product (defined as the # of unique sessions with a purchase event of that product divided by total number of unique sessions that viewed that product)?
 
@@ -28,8 +29,9 @@
 
 3. In order to grant permissions to reporting role, we have done following changes in `dbt_project.yml` file.
 
-      models:
-       greenery:
+       models:
+       
+        greenery:
    
          +post-hook:
             - "{{ grant(role='reporting') }}" 
