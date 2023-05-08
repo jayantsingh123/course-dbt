@@ -1,4 +1,5 @@
 1. dbt snapshots.
+
   - Which products have inventory change from week 3 to week 4?
 
   Response: We can obtain the products whose inventory changed most recently using following query.
@@ -11,12 +12,12 @@
 
 
   The products whose inventory change include, 
-  - Philodendron,
-  - Pothos, 
-  - Bamboo, 
-  - Monstera, 
-  - String of pearls, and
-  - ZZ plant.
+      - Philodendron,
+      - Pothos, 
+      - Bamboo, 
+      - Monstera, 
+      - String of pearls, and
+      - ZZ plant.
 
   - Now that we have 3 weeks of snapshot data, can you use the inventory changes to determine which products had the most fluctuations in inventory? Did we have any items go out of stock in the last 3 weeks? 
 
@@ -32,7 +33,7 @@
 
 
 
-    with cte1 as(
+    with raw_data as(
           select name,
                   inventory,
                 case when date(dbt_updated_at) = date('2023-04-15') then 'week1'
@@ -44,14 +45,15 @@
 
 
 
-     ,cte2 as(
+     ,pivot_data as(
 
         select *
-         from cte1
+         from raw_data
           pivot(max(inventory)
                 for week_number in ('week1', 'week2', 'week3', 'week4'))
                  as p (product_name, week1, week2, week3, week4))
 
+        /* replace null values by previous weeks value, i.e. inventory hasn't changecd */
 
      , backfill as (
 
@@ -61,8 +63,9 @@
                coalesce(week3, week2, week1) as week3,
                 coalesce(week4, week3, week2, week1) as week4
        
-         from cte2)
+         from pivot_data)
 
+        /* get weekly changes */
 
        , weekly_change as(
 
@@ -90,12 +93,16 @@
 
 
 2. Modeling challenges.
+
  - How are our users moving through the product funnel?
 
  Response: In order to answer this quesion, we have defined a model, called `fact_user_journey` in `marts/marketing`. We have filtered the activity to following values, `page_view`, `add_to_cart`, and `checkout`. Using this model, we can find information like;
-    - How often the sessions are ending in abandon cart?
-    - How often sessions are ending in abandon search?
-    - How often sessions are ending in purchase order?
+
+     - How often the sessions are ending in abandon cart?
+
+     - How often sessions are ending in abandon search?
+
+     - How often sessions are ending in purchase order?
 
   For example, we can find percent of sessions with abandon browse at granularity of user location. Here is the query;
 
@@ -121,12 +128,20 @@
 
 3. Reflection questions.
 
-   - if your organization is thinking about using dbt, how would you pitch the value of dbt/analytics engineering to a decision maker at your organization? Not Applicable
+   - if your organization is thinking about using dbt, how would you pitch the value of dbt/analytics engineering to a decision maker at your organization? 
+   
+   Response: Not Applicable
 
    - if your organization is using dbt, what are 1-2 things you might do differently / recommend to your organization based on learning from this course?
+
      Response: Our organization is currently using dbt. An improvement will be to incorporate `exposure` feature, which can help users to track dependency of a dashboard/report on a model.
 
    - if you are thinking about moving to analytics engineering, what skills have you picked that give you the most confidence in pursuing this next step?
-     Response: Following two steps will be helpful in transitioning; first knowledge of dbt fundamentals from this couse, and second refactoring dbt models.  
+
+     Response: Following two steps will be helpful in transitioning; 
+
+          - first knowledge of dbt fundamentals from this couse, and 
+
+          - second refactoring dbt models.  
 
        
