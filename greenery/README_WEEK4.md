@@ -11,19 +11,7 @@
                         from products_snapshot);
 
 
-  The products whose inventory change include, 
-
-      - Philodendron,
-
-      - Pothos, 
-
-      - Bamboo, 
-
-      - Monstera, 
-
-      - String of pearls, and
-
-      - ZZ plant.
+  The products whose inventory change include; Philodendron, Pothos, Bamboo, Monstera, String of pearls, and ZZ plant.
 
   - Now that we have 3 weeks of snapshot data, can you use the inventory changes to determine which products had the most fluctuations in inventory? Did we have any items go out of stock in the last 3 weeks? 
 
@@ -102,13 +90,7 @@
 
  - How are our users moving through the product funnel?
 
- Response: In order to answer this quesion, we have defined a model, called `fact_user_journey` in `marts/marketing`. We have filtered the activity to following values, `page_view`, `add_to_cart`, and `checkout`. Using this model, we can find information like;
-
-  - How often the sessions are ending in abandon cart?
-
-  - How often sessions are ending in abandon search?
-
-  - How often sessions are ending in purchase order?
+ Response: In order to answer this quesion, we have defined a model, called `fact_user_journey` in `marts/marketing`. We have filtered the activity to following values, `page_view`, `add_to_cart`, and `checkout`. Using this model, we can find information like; how often the sessions are ending in abandon cart, how often sessions are ending in abandon search, as well as how often sessions are ending in purchase order?
 
   For example, we can find percent of sessions with abandon browse at granularity of user location. Here is the query;
 
@@ -127,7 +109,7 @@
              round(div0(purchase_session_cnt, page_view_cnt),2) as conversion_rate
       from fact_product_conversion_rate;
 
-    In addition, an exposure file has been defined in the file `exposure.yml` in the `models` folder. It helps us to track user journey on the greenery ecommerce website.
+  In addition, an exposure file has been defined in the file `exposure.yml` in the `models` folder. It helps us to track user journey on the greenery ecommerce website.
 
 
 
@@ -144,10 +126,6 @@
 
    - if you are thinking about moving to analytics engineering, what skills have you picked that give you the most confidence in pursuing this next step?
 
-     Response: Following two steps will be helpful in transitioning; 
-
-          - first knowledge of dbt fundamentals from this couse, and 
-
-          - second refactoring dbt models.  
+     Response: Following two steps will be helpful in transitioning; first knowledge of dbt fundamentals from this couse, and second refactoring dbt models.  
 
        
