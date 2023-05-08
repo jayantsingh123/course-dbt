@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: fact_user_journey
+    description: "Fact table to store information regarding how a user is moving through the website in a session."
+    tests:
+    - dbt_utils.unique_combination_of_columns:
+        combination_of_columns:
+          - user_id
+          - session_id

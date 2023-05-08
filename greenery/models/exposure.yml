@@ -1,0 +1,16 @@
+version: 2
+
+exposures:
+
+  - name: user_journey_performance
+    type: dashboard
+    maturity: high
+    description: >
+      How often are users abandoning search or cart?
+
+    depends_on:
+      - ref('fact_user_journey')
+
+    owner:
+      name: Jayant Singh
+      email: jayantsing@gmail.com
