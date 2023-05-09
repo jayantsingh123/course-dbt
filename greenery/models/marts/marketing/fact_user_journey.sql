@@ -59,10 +59,11 @@ select first.user_id,
        first.first_event_time,
        last.last_activity,
        last.last_event_time,
-       {% for event_type in last_activities %}
-       case when event_type = '{{ event_type }}' then dict_activity['{{event_type}}']
-       else 'Other' end as session_description
+       case last_activity
+        {% for event_type in last_activities %}
+            when '{{ event_type }}' then '{{dict_activity[event_type]}}'
        {% endfor %}
+       else 'Other' end as session_description
      
        
 from first_activity_cte  as first
